@@ -209,6 +209,10 @@ function drawTowerCursor() {
   }
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 ////////////////////////////
 //           IO           //
 ////////////////////////////
