@@ -51,6 +51,7 @@ class Tower {
     const barrelW = size / this.type.barrelWidth;
     const barrelH = size * this.type.barrelHeight;
 
+    strokeWeight(1);
     stroke(this.selected ? 250 : 0);
     fill(this.type.color[this.level]);
     push();
@@ -71,15 +72,16 @@ class Tower {
     } else {
       let targetsLeft = this.type.targetCount[this.level];
       const range = this.type.range[this.level] * GRID_SIZE + 0.5 * GRID_SIZE;
+
+      stroke(255, 255, 0);
+      strokeWeight(this.type.size[this.level] * GRID_SIZE / this.type.barrelWidth / 2);
+
       for (let enemy of enemies) {
         if (targetsLeft <= 0) break;
         if (enemy.pos.dist(this.pos) < range + enemy.size / 2 && enemy.health > 0) {
           enemy.health -= this.type.damage[this.level];
           this.angle = -atan2(enemy.pos.x - this.pos.x, enemy.pos.y - this.pos.y);
-          stroke(255, 255, 0);
-          strokeWeight(size / this.type.barrelWidth[this.level] / 2);
           line(this.pos.x, this.pos.y, enemy.pos.x, enemy.pos.y);
-          strokeWeight(1);
           targetsLeft--;
         }
       }

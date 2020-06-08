@@ -51,8 +51,8 @@ function draw() {
     drawUI();
     drawTrain();
 
-    enemies.forEach((e) => e.update());
     towers.forEach((t) => t.update());
+    enemies.forEach((e) => e.update());
 
     drawTowerCursor();
     spawnEnemies();
